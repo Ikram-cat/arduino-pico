@@ -121,6 +121,16 @@ void TwoWire::begin() {
         // ERROR
         return;
     }
+
+    // allocate buffer if necessary
+    if (!_buff) {
+        _buff = (uint8_t *)malloc(_buffSize);
+        if (!_buff) {
+            // ERROR
+            return;
+        }
+    }
+
     _slave = false;
     i2c_init(_i2c, _clkHz);
     i2c_set_slave_mode(_i2c, false, 0);
