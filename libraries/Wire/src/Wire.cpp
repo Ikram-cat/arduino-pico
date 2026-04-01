@@ -759,8 +759,8 @@ size_t TwoWire::setBufferSize(size_t bSize) {
         return _buffSize;
     }
     // Try and resize the buffer to the new size and handle failure
-    auto newSize = max(WIRE_BUFFER_SIZE_MIN, int(bSize)); 
-    auto save = _buff
+    auto newSize = max(WIRE_BUFFER_SIZE_MIN, (int)bSize);
+    auto save = _buff;
     _buff = (uint8_t *)realloc(_buff, newSize);
     if (!_buff) {
         // Can't allocate size requested, keep old size
